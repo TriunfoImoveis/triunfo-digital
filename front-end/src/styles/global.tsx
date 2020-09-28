@@ -13,14 +13,14 @@ const GlobalStyle = createGlobalStyle`
     font-family: 'Roboto';
   }
   body {
-    background: #C32925;
+    background: ${props => props.theme.colors.secondary};
     text-rendering: optimizeLegibility!important;
     -webkit-font-smoothing: antialiased!important;
     -moz-osx-font-smoothing: grayscale;
   }
   body, input, button {
     font-family: 'Roboto', -apple - system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans - serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol";
-    font-size: 1.6rem;
+    font-size: ${props => props.theme.fontSize.dafault};
   }
   input, button {
     cursor: pointer;

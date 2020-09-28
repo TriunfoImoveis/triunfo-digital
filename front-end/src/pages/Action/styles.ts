@@ -1,8 +1,9 @@
 import styled from 'styled-components';
+import { darken } from 'polished';
 
 export const Container = styled.div`
   height: 100vh;
-  background: #c32925;
+  background: ${({ theme }) => theme.colors.secondary};
   padding: 0 2rem;
 
   @media (max-width: 768px) {
@@ -19,7 +20,7 @@ export const Content = styled.div`
 
   > h1 {
     margin-top: 2rem;
-    color: #fff;
+    color: ${({ theme }) => theme.colors.primary};
     font-size: 2.4rem;
     margin-bottom: 2rem;
   }
@@ -47,7 +48,10 @@ export const ButtonGroup = styled.div`
 
   > button {
     width: 27rem;
-
+    color: ${({ theme }) => theme.colors.secondary};
+    &:hover {
+      background: ${darken(0.03, '#C32925')};
+    }
     & + button {
       margin-left: 3rem;
     }

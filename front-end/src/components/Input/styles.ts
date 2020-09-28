@@ -7,28 +7,15 @@ interface ContainerProps {
 }
 
 export const Container = styled.div<ContainerProps>`
-  background: none;
-  border-radius: 0.5rem;
-  border: 0.2rem solid #f5f5f5;
-  color: #f5f5f5;
-  padding: 1.6rem;
+  background: ${({ theme }) => theme.colors.secondary};
+  border-radius: ${({ theme }) => theme.borderRadius};
+  border: 0.1rem solid ${({ theme }) => theme.colors.borderColor};
   width: 100%;
+  height: 4.5rem;
   display: flex;
   align-items: center;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 
-  & + div {
-    margin-top: 0.8rem;
-  }
-
-  /* display: flex;
-  align-items: center;
-  text-align: left;
-  border: 0.2rem solid #ffffff;
-  border-radius: 0.5rem;
-  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-  margin-bottom: 0.8rem; */
-
+  margin-bottom: 1.6rem;
   ${props =>
     props.isErrored &&
     css`
@@ -37,24 +24,38 @@ export const Container = styled.div<ContainerProps>`
   ${props =>
     props.isFocused &&
     css`
-      color: #ff9000;
-      border-color: #ff9000;
-    `}
+      color: ${({ theme }) => theme.colors.primary};
+      border-color: ${({ theme }) => theme.colors.borderColor};
+    `} 
   ${props =>
     props.isFilled &&
     css`
-      color: #ff9000;
+      color: ${({ theme }) => theme.colors.primary};
     `}
-  input {
+  > input {
     background: transparent;
+    height: 100%;
     flex: 1;
     border: 0;
-    color: #f4ede8;
+    color: #666360;
     &::placeholder {
-      color: #f4ede8;
+      color: #666360;
     }
   }
-  svg {
-    margin-right: 1.6rem;
+  > svg {
+    margin-right: 16px;
   }
+`;
+
+export const IconContainer = styled.div`
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2.9rem;
+  height: 100%;
+  border: 0;
+  border-radius: 0.4rem 0 0 0.4rem;
+  background: ${({ theme }) => theme.colors.primaryAlpha};
+
+  margin-right: 0.8rem;
 `;

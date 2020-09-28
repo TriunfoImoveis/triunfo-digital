@@ -1,40 +1,73 @@
-import React, { useRef, useEffect } from 'react';
-import { OptionTypeBase, Props as SelectProps } from 'react-select';
+import React, {
+  SelectHTMLAttributes,
+  useCallback,
+  useEffect,
+  useRef,
+  useState,
+} from 'react';
 import { useField } from '@unform/core';
-import { SelectInput } from './styles';
 
-interface Props extends SelectProps<OptionTypeBase> {
+import { IconBaseProps } from 'react-icons';
+import { Container, IconContainer } from './styles';
+
+interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
+  options: {
+    value: string;
+    label: string;
+  }[];
+  icon?: React.ComponentType<IconBaseProps>;
 }
-const Select: React.FC<Props> = ({ name, ...rest }) => {
-  const selectRef = useRef(null);
-  const { fieldName, defaultValue, registerField, error } = useField(name);
+
+const Select: React.FC<SelectProps> = ({
+  name,
+  icon: Icon,
+  options,
+  ...rest
+}) => {
+  const selectRef = useRef<HTMLSelectElement>(null);
+  const [isFocused, setIsFocused] = useState(false);
+  const [isFilled, setIsFilled] = useState(false);
+  const { fieldName, defaultValue, error, registerField } = useField(name);
+
+  const handleInputFocus = useCallback(() => {
+    setIsFocused(true);
+  }, []);
+  const handleInputBlur = useCallback(() => {
+    setIsFocused(false);
+    setIsFilled(!!selectRef.current?.value);
+  }, []);
+
   useEffect(() => {
     registerField({
       name: fieldName,
       ref: selectRef.current,
-      getValue: (ref: any) => {
-        if (rest.isMulti) {
-          if (!ref.state.value) {
-            return [];
-          }
-          return ref.state.value.map((option: OptionTypeBase) => option.value);
-        }
-        if (!ref.state.value) {
-          return '';
-        }
-        return ref.state.value.value;
-      },
+      path: 'value',
     });
-  }, [fieldName, registerField, rest.isMulti]);
+  }, [fieldName, registerField]);
   return (
-    <SelectInput
-      defaultValue={defaultValue}
-      ref={selectRef}
-      classNamePrefix="react-select"
-      placeholder="Cargo"
-      {...rest}
-    />
+    <Container isErrored={!!error} isFilled={isFilled} isFocused={isFocused}>
+      {Icon && (
+        <IconContainer>
+          <Icon size={22} />
+        </IconContainer>
+      )}
+      <select
+        onFocus={handleInputFocus}
+        onBlur={handleInputBlur}
+        ref={selectRef}
+        defaultValue={defaultValue}
+        {...rest}
+      >
+        <option value="">Selecione o Cargo</option>
+        {options.map(option => (
+          <option key={option.value} value={option.value}>
+            {option.label}
+          </option>
+        ))}
+      </select>
+    </Container>
   );
 };
+
 export default Select;

@@ -39,12 +39,17 @@ export const NavItemContent = styled.div`
   & + div {
     margin-left: 2.4rem;
   }
+  > svg {
+    path {
+      fill: #c32925;
+    }
+  }
   > a {
     margin-left: 0.8rem;
     font-family: Roboto;
     font-style: normal;
     font-size: 1.6rem;
-    color: #fff;
+    color: ${({ theme }) => theme.colors.primary};
     text-decoration: none;
   }
 `;

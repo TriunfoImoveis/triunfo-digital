@@ -2,10 +2,10 @@ import styled from 'styled-components';
 import { shade } from 'polished';
 
 export const Container = styled.button`
-  background: #fff;
+  background: ${({ theme }) => theme.colors.primary};
   border-radius: 0.5rem;
   border: 0;
-  color: #c32925;
+  color: ${({ theme }) => theme.colors.secondary};
   height: 5rem;
   width: 100%;
   margin-top: 16px;
@@ -16,8 +16,8 @@ export const Container = styled.button`
   font-size: 2rem;
   line-height: 2.3rem;
 
-  color: #cc1e0d;
+  color: ${({ theme }) => theme.colors.secondary};
   &:hover {
-    background: ${shade(0.2, '#fff')};
+    background: ${shade(0.2, '#C32925')};
   }
 `;

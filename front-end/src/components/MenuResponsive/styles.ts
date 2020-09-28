@@ -14,7 +14,7 @@ export const MenuList = styled.div`
   width: 100px;
   left: calc(100% - 90px);
   top: calc(100% + 10px);
-  background: #fff;
+  background: ${({ theme }) => theme.colors.secondary};
   border-radius: 0.5rem;
 `;
 
@@ -27,11 +27,11 @@ export const ItemsMenu = styled.div`
     margin-right: 0.8rem;
     width: 2rem;
     path {
-      fill: #c32925;
+      fill: ${({ theme }) => theme.colors.primary};
     }
   }
 
   span {
-    color: #c32925;
+    color: ${({ theme }) => theme.colors.primary};
   }
 `;

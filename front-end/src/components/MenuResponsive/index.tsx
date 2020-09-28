@@ -19,7 +19,7 @@ const MenuResponsive: React.FC = () => {
   return (
     <Container>
       <MenuButton onClick={handleVisible}>
-        <GiHamburgerMenu color="#fff" size={20} />
+        <GiHamburgerMenu color="#C32925" size={20} />
       </MenuButton>
 
       {visible && (
