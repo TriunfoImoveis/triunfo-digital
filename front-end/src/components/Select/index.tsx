@@ -8,7 +8,7 @@ import React, {
 import { useField } from '@unform/core';
 
 import { IconBaseProps } from 'react-icons';
-import { Container, IconContainer } from './styles';
+import { Container, IconContainer, Error } from './styles';
 
 interface SelectProps extends SelectHTMLAttributes<HTMLSelectElement> {
   name: string;
@@ -66,6 +66,7 @@ const Select: React.FC<SelectProps> = ({
           </option>
         ))}
       </select>
+      {error && <Error>{error}</Error>}
     </Container>
   );
 };

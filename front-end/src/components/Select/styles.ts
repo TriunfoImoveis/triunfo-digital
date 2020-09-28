@@ -57,3 +57,8 @@ export const IconContainer = styled.div`
 
   margin-right: 0.8rem;
 `;
+
+export const Error = styled.span`
+  font-size: ${({ theme }) => theme.fontSize.tiny};
+  color: ${({ theme }) => theme.colors.danger};
+`;
