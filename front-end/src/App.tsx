@@ -6,12 +6,16 @@ import GlobalStyle from './styles/global';
 import theme from './styles/theme';
 import Routes from './routes';
 
+import { AuthProvider } from './context/AuthContext';
+
 const App: React.FC = () => {
   return (
     <ThemeProvider theme={theme}>
-      <Router>
-        <Routes />
-      </Router>
+      <AuthProvider>
+        <Router>
+          <Routes />
+        </Router>
+      </AuthProvider>
       <GlobalStyle />
     </ThemeProvider>
   );
